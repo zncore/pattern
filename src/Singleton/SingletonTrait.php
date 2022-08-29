@@ -2,12 +2,13 @@
 
 namespace ZnCore\Pattern\Singleton;
 
+/**
+ *
+ */
 trait SingletonTrait
 {
 
-    /**
-     * @var static
-     */
+    /** @var static */
     private static $instance;
 
     private function __construct()
@@ -22,9 +23,15 @@ trait SingletonTrait
         return self::$instance;
     }
 
+    protected static function getConstructorParameters(): array
+    {
+        return [];
+    }
+
     private static function createInstance(string $className = null): self
     {
         $className = $className ?: static::class;
-        return new $className();
+        $constructorParameters = static::getConstructorParameters();
+        return new $className(...$constructorParameters);
     }
 }
