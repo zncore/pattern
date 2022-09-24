@@ -3,7 +3,7 @@
 namespace ZnCore\Pattern\Singleton;
 
 /**
- *
+ * Встраивание паттерна "Singleton"
  */
 trait SingletonTrait
 {
@@ -14,7 +14,11 @@ trait SingletonTrait
     private function __construct()
     {
     }
-
+    
+    /**
+     * Получить экземпляр класса
+     * @return static экземпляр класса
+     */
     public static function getInstance(): self
     {
         if (!self::$instance) {
@@ -28,6 +32,12 @@ trait SingletonTrait
         return [];
     }
 
+    /**
+     * Создать экземпляр класса
+     * 
+     * @param string|null $className
+     * @return static
+     */
     private static function createInstance(string $className = null): self
     {
         $className = $className ?: static::class;
